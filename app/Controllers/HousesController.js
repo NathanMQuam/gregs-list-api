@@ -7,13 +7,13 @@ function _draw() {
   houses.forEach(house => template += house.Template)
   // console.log(template)
   document.getElementById('houses').innerHTML = template
-  console.log(ProxyState.houses)
+  // console.log(ProxyState.houses)
 }
 
 export default class housesController {
   constructor() {
     console.log("houses controller working")
-    console.log(ProxyState.houses)
+    // console.log(ProxyState.houses)
     _draw()
     ProxyState.on("houses", _draw)
   }
@@ -22,7 +22,7 @@ export default class housesController {
     event.preventDefault();
     console.log('creating house')
     let form = event.target
-    console.log(form)
+    // console.log(form)
     let rawHouse = {
       squareFeet: form.squareFeet.value,
       rooms: form.rooms.value,
@@ -36,12 +36,12 @@ export default class housesController {
   }
 
   bid(id) {
-    console.log('bidding ' + id)
+    console.log('bidding on house:', id)
     housesService.bid(id)
   }
 
   deleteHouse(id) {
-    console.log(id)
+    console.log("deleting house:", id)
     housesService.deleteHouse(id)
   }
 

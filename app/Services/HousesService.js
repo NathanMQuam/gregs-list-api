@@ -1,36 +1,53 @@
 import { ProxyState } from "../AppState.js";
 import House from "../Models/House.js";
+import { api } from "./AxiosService.js";
 
 class HousesService {
 
 
   constructor() {
     console.log("Houses service");
+    this.getHouses()
   }
 
-  createHouse(rawHouse) {
-    //  let newHouse = new House(rawHouse)
-    //  console.log(newHouse)
-    //  ProxyState.Houses = [...ProxyState.Houses, newHouse]
-
-    let temp = ProxyState.houses
-    temp.push(new House(rawHouse))
-    ProxyState.houses = temp
-
+  async getHouses() {
+    try {
+      const res = await api.get('houses')
+      ProxyState.houses = res.data.map(rawHouseData => new House(rawHouseData))
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  bid(id) {
-    let temp = ProxyState.houses
-    let house = temp.find(h => h.id === id)
-    house.price += 1000
-    ProxyState.houses = temp
+  async createHouse(rawHouse) {
+    try {
+      await api.post('houses', rawHouse)
+      this.getHouses()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  deleteHouse(id) {
-    let temp = ProxyState.houses
-    let houseIndex = temp.findIndex(house => house.id == id)
-    temp.splice(houseIndex, 1)
-    ProxyState.houses = temp
+  async bid(id) {
+    let house = ProxyState.houses.find(h => h.id === id)
+    house.price += 100
+    try {
+      await api.put('houses/' + id, house)
+      // console.log(res.data)
+      // NOTE this is another opportunity to go and fetch the data and make sure it is the most up to date with our database
+      ProxyState.houses = ProxyState.houses
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async deleteHouse(id) {
+    try {
+      const res = await api.delete(`houses/${id}`)
+      this.getHouses()
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 
