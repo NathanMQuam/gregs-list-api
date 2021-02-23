@@ -33,7 +33,7 @@ class CarsService {
     car.price += 100
     try {
       const res = await api.put('cars/' + id, car)
-      console.log(res.data)
+      // console.log(res.data)
       // NOTE this is another opportunity to go and fetch the data and make sure it is the most up to date with our database
       ProxyState.cars = ProxyState.cars
     } catch (error) {
