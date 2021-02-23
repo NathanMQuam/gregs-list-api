@@ -1,36 +1,53 @@
 import { ProxyState } from "../AppState.js";
 import Car from "../Models/Car.js";
+import { api } from "./AxiosService.js";
 
-class CarsService{
+class CarsService {
 
- 
-  constructor(){
+
+  constructor() {
     console.log("cars service");
+    this.getCars()
   }
 
-  createCar(rawCar) {
-  //  let newCar = new Car(rawCar)
-  //  console.log(newCar)
-  //  ProxyState.cars = [...ProxyState.cars, newCar]
-
-    let temp = ProxyState.cars
-    temp.push(new Car(rawCar))
-    ProxyState.cars = temp
-
+  async getCars() {
+    try {
+      const res = await api.get('cars')
+      ProxyState.cars = res.data.map(rawCarData => new Car(rawCarData))
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  bid(id) {
-    let temp = ProxyState.cars
-    let car = temp.find(c=> c.id === id)
+  async createCar(rawCar) {
+    try {
+      await api.post('cars', rawCar)
+      this.getCars()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async bid(id) {
+    let car = ProxyState.cars.find(c => c.id === id)
     car.price += 100
-    ProxyState.cars = temp
+    try {
+      const res = await api.put('cars/' + id, car)
+      console.log(res.data)
+      // NOTE this is another opportunity to go and fetch the data and make sure it is the most up to date with our database
+      ProxyState.cars = ProxyState.cars
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  deleteCar(id) {
-    let temp = ProxyState.cars
-    let carIndex = temp.findIndex(car =>  car.id == id)
-    temp.splice(carIndex, 1)
-    ProxyState.cars = temp
+  async deleteCar(id) {
+    try {
+      const res = await api.delete(`cars/${id}`)
+      this.getCars()
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 
