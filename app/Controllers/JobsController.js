@@ -26,16 +26,16 @@ export default class JobsController {
     let rawJob = {
       jobTitle: form.jobTitle.value,
       company: form.company.value,
-      wage: parseFloat(form.wage.value),
-      description: form.description.value,
-      imgUrl: form.imgUrl.value
+      hours: parseFloat(form.hours.value),
+      rate: parseFloat(form.rate.value),
+      description: form.description.value
     }
     console.log(rawJob)
     jobsService.createJob(rawJob)
   }
 
   apply(id) {
-    console.log('bidding on job:', id)
+    console.log('applied to job:', id)
     jobsService.apply(id)
   }
 

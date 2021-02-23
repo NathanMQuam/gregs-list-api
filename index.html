@@ -1,274 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="assets/style/main.css" />
-    <title>Quam's-List</title>
-  </head>
 
-  <body>
-    <header>
-      <nav class="navbar navbar-dark navbar-expand bg-dark text-light">
-        <a class="navbar-brand" href="#">
-          <img
-            src="assets/img/logo.png"
-            width="45"
-            height="45"
-            alt=""
-            loading="lazy"
-          />
-          <span class="ml-2">Quam's-List</span>
-        </a>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="assets/style/main.css" />
+  <title>Quam's-List</title>
+</head>
 
-    <main class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <h1>Cars</h1>
-          <form
-            class="form-inline"
-            onsubmit="app.carsController.createCar(event)"
-          >
-            <div class="form-group">
-              <input
-                type="text"
-                name="make"
-                id="make"
-                class="form-control"
-                placeholder="Make"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                name="model"
-                id="model"
-                class="form-control"
-                placeholder="Model"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="number"
-                name="year"
-                id="year"
-                class="form-control"
-                placeholder="Year"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="number"
-                name="price"
-                id="price"
-                class="form-control"
-                placeholder="Price"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                name="description"
-                id="description"
-                class="form-control"
-                placeholder="Description"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="number"
-                name="miles"
-                id="miles"
-                class="form-control"
-                placeholder="Miles"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                name="imgUrl"
-                id="imgUrl"
-                class="form-control"
-                placeholder="ImgUrl"
-                aria-describedby="helpId"
-              />
-            </div>
-            <button class="btn btn-info" type="submit">Create</button>
-          </form>
-        </div>
+<body>
+  <header>
+    <nav class="navbar navbar-dark navbar-expand bg-dark text-light">
+      <a class="navbar-brand" href="#">
+        <img src="assets/img/logo.png" width="45" height="45" alt="" loading="lazy" />
+        <span class="ml-2">Quam's-List</span>
+      </a>
+    </nav>
+  </header>
+
+  <main class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <h1>Cars</h1>
+        <form class="form-inline" onsubmit="app.carsController.createCar(event)">
+          <div class="form-group">
+            <input type="text" name="make" id="make" class="form-control" placeholder="Make"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="text" name="model" id="model" class="form-control" placeholder="Model"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="number" name="year" id="year" class="form-control" placeholder="Year"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="number" name="price" id="price" class="form-control" placeholder="Price"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="text" name="description" id="description" class="form-control" placeholder="Description"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="number" name="miles" id="miles" class="form-control" placeholder="Miles"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="text" name="imgUrl" id="imgUrl" class="form-control" placeholder="ImgUrl"
+              aria-describedby="helpId" />
+          </div>
+          <button class="btn btn-info" type="submit">Create</button>
+        </form>
       </div>
-      <div class="row" id="cars"></div>
+    </div>
+    <div class="row" id="cars"></div>
 
-      <hr />
+    <hr />
 
-      <div class="row">
-        <div class="col">
-          <h1>Houses</h1>
+    <div class="row">
+      <div class="col">
+        <h1>Houses</h1>
 
-          <form
-            class="form-inline"
-            onsubmit="app.housesController.createHouse(event)"
-          >
-            <div class="form-group">
-              <input
-                type="text"
-                name="squareFeet"
-                id="squareFeet"
-                class="form-control"
-                placeholder="Square Feet"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                name="rooms"
-                id="rooms"
-                class="form-control"
-                placeholder="Rooms"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                name="address"
-                id="address"
-                class="form-control"
-                placeholder="Address"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="number"
-                name="price"
-                id="price"
-                class="form-control"
-                placeholder="Price"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                name="description"
-                id="description"
-                class="form-control"
-                placeholder="Description"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                name="imgUrl"
-                id="imgUrl"
-                class="form-control"
-                placeholder="ImgUrl"
-                aria-describedby="helpId"
-              />
-            </div>
-            <button class="btn btn-info" type="submit">Create</button>
-          </form>
-        </div>
+        <form class="form-inline" onsubmit="app.housesController.createHouse(event)">
+          <div class="form-group">
+            <input type="text" name="bedrooms" id="bedrooms" class="form-control" placeholder="Bedrooms"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="text" name="bathrooms" id="bathrooms" class="form-control" placeholder="Bathrooms"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="number" name="levels" id="levels" class="form-control" placeholder="Levels"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="number" name="year" id="year" class="form-control" placeholder="Year"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="number" name="price" id="price" class="form-control" placeholder="Price"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="text" name="description" id="description" class="form-control" placeholder="Description"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="text" name="imgUrl" id="imgUrl" class="form-control" placeholder="ImgUrl"
+              aria-describedby="helpId" />
+          </div>
+          <button class="btn btn-info" type="submit">Create</button>
+        </form>
       </div>
-      <div class="row" id="houses"></div>
+    </div>
+    <div class="row" id="houses"></div>
 
-      <hr />
+    <hr />
 
-      <div class="row">
-        <div class="col">
-          <h1>Jobs</h1>
-          <form
-            class="form-inline"
-            onsubmit="app.jobsController.createJob(event)"
-          >
-            <div class="form-group">
-              <input
-                type="text"
-                name="jobTitle"
-                id="jobTitle"
-                class="form-control"
-                placeholder="Job Title"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                name="company"
-                id="company"
-                class="form-control"
-                placeholder="Company Name"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="number"
-                name="wage"
-                id="wage"
-                class="form-control"
-                placeholder="Wage"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                name="description"
-                id="description"
-                class="form-control"
-                placeholder="Description"
-                aria-describedby="helpId"
-              />
-            </div>
-            <div class="form-group">
-              <input
-                type="text"
-                name="imgUrl"
-                id="imgUrl"
-                class="form-control"
-                placeholder="ImgUrl"
-                aria-describedby="helpId"
-              />
-            </div>
-            <button class="btn btn-info" type="submit">Create</button>
-          </form>
-        </div>
+    <div class="row">
+      <div class="col">
+        <h1>Jobs</h1>
+        <form class="form-inline" onsubmit="app.jobsController.createJob(event)">
+          <div class="form-group">
+            <input type="text" name="jobTitle" id="jobTitle" class="form-control" placeholder="Job Title"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="text" name="company" id="company" class="form-control" placeholder="Company Name"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="number" name="hours" id="hours" class="form-control" placeholder="Hours"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="number" name="rate" id="rate" class="form-control" placeholder="Rate"
+              aria-describedby="helpId" />
+          </div>
+          <div class="form-group">
+            <input type="text" name="description" id="description" class="form-control" placeholder="Description"
+              aria-describedby="helpId" />
+          </div>
+          <button class="btn btn-info" type="submit">Create</button>
+        </form>
       </div>
-      <div class="row" id="jobs"></div>
-    </main>
+    </div>
+    <div class="row" id="jobs"></div>
+  </main>
 
-    <footer class="container-fluid bg-dark text-light">
-      <div class="row text-center">
-        <div class="col">
-          <p><small>Made with love by Codeworks</small></p>
-        </div>
+  <footer class="container-fluid bg-dark text-light">
+    <div class="row text-center">
+      <div class="col">
+        <p><small>Made with love by Codeworks</small></p>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="app/main.js" type="module"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="app/main.js" type="module"></script>
+</body>
+
 </html>

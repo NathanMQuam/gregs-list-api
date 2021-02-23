@@ -1,29 +1,51 @@
 import { ProxyState } from "../AppState.js";
 import Job from "../Models/Job.js";
+import { api } from "./AxiosService.js";
 
 class JobsService {
   constructor() {
     console.log("Jobs service");
+    this.getJobs()
   }
 
-  createJob(rawJob) {
-    let temp = ProxyState.jobs
-    temp.push(new Job(rawJob))
-    ProxyState.jobs = temp
+  async getJobs() {
+    try {
+      const res = await api.get('jobs')
+      ProxyState.jobs = res.data.map(rawJobData => new Job(rawJobData))
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  apply(id) {
-    let temp = ProxyState.jobs
-    let job = temp.find(h => h.id === id)
-    job.status = 'Position Filled'
-    ProxyState.jobs = temp
+  async createJob(rawJob) {
+    try {
+      await api.post('jobs', rawJob)
+      this.getJobs()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  deleteJob(id) {
-    let temp = ProxyState.jobs
-    let jobIndex = temp.findIndex(job => job.id == id)
-    temp.splice(jobIndex, 1)
-    ProxyState.jobs = temp
+  async apply(id) {
+    let job = ProxyState.jobs.find(c => c.id === id)
+    job.status = "Application Pending"
+    try {
+      const res = await api.put('jobs/' + id, job)
+      // console.log(res.data)
+      // NOTE this is another opportunity to go and fetch the data and make sure it is the most up to date with our database
+      ProxyState.jobs = ProxyState.jobs
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async deleteJob(id) {
+    try {
+      const res = await api.delete(`jobs/${id}`)
+      this.getJobs()
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 

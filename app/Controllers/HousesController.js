@@ -24,9 +24,10 @@ export default class housesController {
     let form = event.target
     // console.log(form)
     let rawHouse = {
-      squareFeet: form.squareFeet.value,
-      rooms: form.rooms.value,
-      address: form.address.value,
+      bedrooms: form.bedrooms.value,
+      bathrooms: form.bathrooms.value,
+      levels: form.levels.value,
+      year: form.year.value,
       price: parseFloat(form.price.value),
       description: form.description.value,
       imgUrl: form.imgUrl.value
