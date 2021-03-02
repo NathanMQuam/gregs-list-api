@@ -10,6 +10,9 @@ export default class Car {
     this.imgUrl = imgUrl
     this.miles = miles
     this.id = _id || id
+
+    if(this.imgUrl === "")
+      this.imgUrl = "http://placehold.it/200x200"
   }
 
   get Template() {

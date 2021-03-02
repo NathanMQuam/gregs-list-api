@@ -1,13 +1,13 @@
 import { generateId } from "../Utils/GenerateId.js"
 
 export default class Job {
-   constructor({jobTitle, company, hours, rate, description, _id, id}) {
+   constructor({jobTitle, company, hours, rate, description, status, _id, id}) {
       this.jobTitle = jobTitle
       this.company = company
       this.hours = hours
       this.rate = rate
       this.description = description
-      this.status = "Hiring"
+      this.status = status || "Hiring"
       this.id = _id || id
    }
 
